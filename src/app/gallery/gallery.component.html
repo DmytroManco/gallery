@@ -11,3 +11,16 @@
     </label>
   </div>
 </div>
+
+<div class="server-pagination">
+  <div class="prev" (click)="toPrevPage()">Prev</div>
+  <label>
+    Go to Page
+    <input
+      type="number"
+      value="1"
+      step="1"
+      #pageInput (keydown)="onKeydown($event)">
+  </label>
+  <div class="next" (click)="toNextPage()">Next</div>
+</div>

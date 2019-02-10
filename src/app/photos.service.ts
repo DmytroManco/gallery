@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,9 @@ export class PhotosService {
   constructor(private http: HttpClient) { }
 
   public getPhotos(page = 1): Observable<any> {
-    return this.http.get(`${this.apiUrl}photos?page=${page}&per_page=10&client_id=${this.apiID}`);
+    return this.http.get(`${this.apiUrl}photos?page=${page}&per_page=10&client_id=${this.apiID}`)
+      .pipe(
+        catchError(error => of(error))
+      );
   }
 }

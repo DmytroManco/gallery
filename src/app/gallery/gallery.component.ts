@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { PhotosService } from '../photos.service';
 
 export interface PhotoUi {
@@ -14,7 +14,12 @@ export interface PhotoUi {
 export class GalleryComponent implements OnInit, OnDestroy {
   photos$;
   localUser;
-  constructor(private photosService: PhotosService) { }
+  page = 1;
+
+  @ViewChild('pageInput') pageControl: ElementRef;
+
+  constructor(private photosService: PhotosService) {
+  }
 
   ngOnInit() {
     this.photos$ = this.photosService.getPhotos();
@@ -50,5 +55,31 @@ export class GalleryComponent implements OnInit, OnDestroy {
     const id = photo.id;
     const index = this.localUser.favlist.findIndex(p => p.id === id);
     this.localUser.favlist.splice(index, 1);
+  }
+
+  toPrevPage() {
+    if (this.page <= 1) {
+      return;
+    }
+
+    this.page--;
+    this.pageControl.nativeElement.value = this.page;
+    this.photos$ = this.photosService.getPhotos(this.page);
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    const value = parseInt(this.pageControl.nativeElement.value, 10);
+    if (value < 1 || isNaN(value) || !Number.isInteger(value)) return;
+
+    if (event.key === 'Enter') {
+      this.photos$ = this.photosService.getPhotos(value);
+      this.page = value;
+    }
+  }
+
+  toNextPage() {
+    this.page++;
+    this.pageControl.nativeElement.value = this.page;
+    this.photos$ = this.photosService.getPhotos(this.page);
   }
 }
