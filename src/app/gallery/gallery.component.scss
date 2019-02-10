@@ -1,12 +1,23 @@
-.gallery-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1rem;
+.server-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
 
-  .img-wrapper {
-    img {
-      max-width: 400px;
-      height: 400px;
+  .prev, .next {
+    cursor: pointer;
+    text-transform: uppercase;
+    margin: 0 1rem;
+    background: darkblue;
+    padding: 1rem;
+    color: #fff;
+    box-shadow: 1px 1px 1px 1px #ccc;
+  }
+
+  label {
+    >input {
+      padding: 1rem 5px;
+      width: 3rem;
     }
   }
 }

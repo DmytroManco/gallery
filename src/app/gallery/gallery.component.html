@@ -1,6 +1,6 @@
 <h1>Gallery / <span><a [routerLink]="['/favorite']">See You Favorite Photos</a></span></h1>
 
-<div class="gallery-container">
+<div class="container">
   <div class="img-wrapper" *ngFor="let photo of photos$ | async">
     <img [src]="photo?.urls.regular" alt=""> <br>
     <label for="">

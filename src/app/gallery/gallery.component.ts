@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { PhotosService } from '../photos.service';
 
 export interface PhotoUi {
@@ -9,7 +9,8 @@ export interface PhotoUi {
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.scss']
+  styleUrls: ['./gallery.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GalleryComponent implements OnInit, OnDestroy {
   photos$;

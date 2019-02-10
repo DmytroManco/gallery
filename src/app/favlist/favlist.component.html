@@ -1,7 +1,7 @@
 <h1>Your Favorite Photos: / <span><a [routerLink]="['']">Return to Gallery</a></span></h1>
 
 <div class="container">
-  <div *ngFor="let photo of localUser.favlist">
+  <div class="img-wrapper" *ngFor="let photo of localUser.favlist">
     <img [src]="photo.htmlUrl" alt="image">
   </div>
 </div>
