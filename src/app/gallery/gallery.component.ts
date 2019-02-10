@@ -45,9 +45,10 @@ export class GalleryComponent implements OnInit, OnDestroy {
   }
 
   addToFavList(photo) {
+    console.log(photo);
     const photoUi: PhotoUi = {
       id: photo.id,
-      htmlUrl: photo.urls.regular,
+      htmlUrl: photo.urls.small,
     };
     this.localUser.favlist.push(photoUi);
   }
